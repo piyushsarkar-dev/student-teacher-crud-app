@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <>
-      <section className="grid h-dvh place-items-center">
+      <section className="grid grid-cols-1 place-items-center gap-6 md:grid-cols-2 xl:grid-cols-3">
         <StudentCard />
       </section>
     </>
