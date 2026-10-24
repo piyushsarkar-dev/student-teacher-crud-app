@@ -1,18 +1,18 @@
-import Header from "@/components/Layout/Header";
+import StudentCard from "@/components/customui/StudentCard";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Home | Student Teacher CRUD App",
   description:
-    "A full-stack CRUD application built with Next.js, TypeScript, and Tailwind CSS for managing student and teacher data.",
+    "A CRUD application built with Next.js, TypeScript, and Tailwind CSS for managing student and teacher data.",
 };
 
 const page = () => {
   return (
     <>
-      <Header />
-
-      <main className="grid h-dvh place-items-center"></main>
+      <section className="grid h-dvh place-items-center">
+        <StudentCard />
+      </section>
     </>
   );
 };
