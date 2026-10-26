@@ -9,7 +9,7 @@ import {
 } from "@/components/shadcnui/card";
 
 import DeleteButton from "./DeleteButton";
-import Edit from "./Edit";
+import EditButton from "./EditButton";
 
 const StudentCard = () => {
   return (
@@ -85,7 +85,7 @@ const StudentCard = () => {
       {/* Footer Actions */}
       <CardFooter className="flex grid grid-cols-2 gap-3 border-t px-5 py-4">
         <DeleteButton />
-        <Edit />
+        <EditButton />
       </CardFooter>
     </Card>
   );

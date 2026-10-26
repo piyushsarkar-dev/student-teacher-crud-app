@@ -1,13 +1,13 @@
-const Edit = () => {
+const EditButton = () => {
   return (
     <button
-      className="group relative box-border flex h-9 min-w-0 flex-1 cursor-pointer items-center overflow-hidden rounded-md border border-[#1d4ed8] bg-[#2563eb] p-0 transition-all duration-300 hover:bg-[#1d4ed8] active:border-[#1e40af]"
+      className="group relative box-border flex h-9 min-w-0 flex-1 cursor-pointer items-center overflow-hidden rounded-md border border-[#2563eb] bg-transparent p-0 transition-all duration-300 hover:border-[#2563eb]"
       type="button">
-      <span className="absolute inset-0 flex items-center justify-center font-semibold text-white transition-all duration-300 group-hover:opacity-0">
+      <span className="absolute inset-0 z-10 flex items-center justify-center font-semibold text-[#2563eb] transition-all duration-300 group-hover:text-white group-hover:opacity-0">
         Edit
       </span>
 
-      <span className="absolute top-0 right-0 flex h-full w-9 items-center justify-center bg-[#1d4ed8] transition-all duration-300 group-hover:w-full group-active:bg-[#1e40af]">
+      <span className="absolute top-0 right-0 flex h-full w-9 items-center justify-center bg-[#2563eb] transition-all duration-300 group-hover:w-full">
         <svg
           className="size-5 shrink-0"
           viewBox="0 0 24 24"
@@ -26,4 +26,4 @@ const Edit = () => {
   );
 };
 
-export default Edit;
+export default EditButton;

@@ -16,7 +16,7 @@ const RootLayout = ({ children }: LayoutProps) => {
         interHeading.variable,
       )}
       suppressHydrationWarning>
-      <body>
+      <body suppressHydrationWarning>
         <ThemeProvider
           attribute={"class"}
           defaultTheme="dark"

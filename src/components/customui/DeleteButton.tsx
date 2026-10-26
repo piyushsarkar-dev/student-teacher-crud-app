@@ -1,13 +1,13 @@
 const DeleteButton = () => {
   return (
     <button
-      className="group relative box-border flex h-9 min-w-0 flex-1 cursor-pointer items-center overflow-hidden rounded-md border border-[#cc0000] bg-[#e50000] p-0 transition-all duration-300 hover:bg-[#cc0000] active:border-[#b20000]"
+      className="group relative box-border flex h-9 min-w-0 flex-1 cursor-pointer items-center overflow-hidden rounded-md border border-[#e50000] bg-transparent p-0 transition-all duration-300 hover:border-[#e50000]"
       type="button">
-      <span className="absolute inset-0 flex items-center justify-center font-semibold text-white transition-all duration-300 group-hover:opacity-0">
+      <span className="absolute inset-0 z-10 flex items-center justify-center font-semibold text-[#e50000] transition-all duration-300 group-hover:text-white group-hover:opacity-0">
         Delete
       </span>
 
-      <span className="absolute top-0 right-0 flex h-full w-9 items-center justify-center bg-[#cc0000] transition-all duration-300 group-hover:w-full group-active:bg-[#b20000]">
+      <span className="absolute top-0 right-0 flex h-full w-9 items-center justify-center bg-[#e50000] transition-all duration-300 group-hover:w-full">
         <svg
           className="size-5 shrink-0"
           viewBox="0 0 512 512"
@@ -20,7 +20,6 @@ const DeleteButton = () => {
             strokeLinejoin="round"
             strokeWidth="32"
           />
-
           <line
             stroke="#fff"
             strokeLinecap="round"
@@ -31,7 +30,6 @@ const DeleteButton = () => {
             y1="112"
             y2="112"
           />
-
           <path
             d="M192,112V72h0a23.93,23.93,0,0,1,24-24h80a23.93,23.93,0,0,1,24,24h0v40"
             stroke="#fff"
@@ -39,7 +37,6 @@ const DeleteButton = () => {
             strokeLinejoin="round"
             strokeWidth="32"
           />
-
           <line
             stroke="#fff"
             strokeLinecap="round"
@@ -50,7 +47,6 @@ const DeleteButton = () => {
             y1="176"
             y2="400"
           />
-
           <line
             stroke="#fff"
             strokeLinecap="round"
@@ -61,7 +57,6 @@ const DeleteButton = () => {
             y1="176"
             y2="400"
           />
-
           <line
             stroke="#fff"
             strokeLinecap="round"
