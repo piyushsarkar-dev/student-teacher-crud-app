@@ -1,5 +1,13 @@
-import { GraduationCap, Mail, MarsIcon, Phone } from "lucide-react";
+import {
+  GraduationCap,
+  Mail,
+  MarsIcon,
+  PenIcon,
+  Phone,
+  TrashIcon,
+} from "lucide-react";
 
+import { Button } from "@/components/shadcnui/button";
 import {
   Card,
   CardContent,
@@ -8,12 +16,9 @@ import {
   CardTitle,
 } from "@/components/shadcnui/card";
 
-import DeleteButton from "./DeleteButton";
-import EditButton from "./EditButton";
-
 const StudentCard = () => {
   return (
-    <Card className="w-full max-w-[410px] gap-0 overflow-hidden rounded-2xl p-0">
+    <Card className="w-full gap-0 overflow-hidden rounded-2xl p-0">
       {/* Header */}
       <CardHeader className="border-b px-5 py-5 text-center">
         <CardTitle className="text-3xl font-semibold tracking-tight">
@@ -82,10 +87,15 @@ const StudentCard = () => {
         </div>
       </CardContent>
 
-      {/* Footer Actions */}
-      <CardFooter className="flex grid grid-cols-2 gap-3 border-t px-5 py-4">
-        <DeleteButton />
-        <EditButton />
+      <CardFooter className="grid grid-cols-2 gap-3 border-t px-5 py-4">
+        <Button variant="destructive">
+          <TrashIcon />
+          Delete
+        </Button>
+        <Button variant="outline">
+          <PenIcon />
+          Edit
+        </Button>
       </CardFooter>
     </Card>
   );

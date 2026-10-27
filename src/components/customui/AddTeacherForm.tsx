@@ -1,8 +1,10 @@
 "use client";
 
 import { teacherFormSchema, type TeacherFormType } from "@/lib/zodSchema";
+import createTeacher from "@/server/createTeacher";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TrashIcon, UserCheckIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { Button } from "../shadcnui/button";
 import { CardContent, CardFooter } from "../shadcnui/card";
@@ -18,8 +20,10 @@ import {
   SelectValue,
 } from "../shadcnui/select";
 import { Separator } from "../shadcnui/separator";
+import { toast } from "../shadcnui/toast";
 
 const AddTeacherForm = () => {
+  const { push } = useRouter();
   const { handleSubmit, control, reset } = useForm<TeacherFormType>({
     resolver: zodResolver(teacherFormSchema),
     defaultValues: {
@@ -29,9 +33,21 @@ const AddTeacherForm = () => {
     mode: "all",
   });
 
-  const addTeacherHandler = (data: TeacherFormType) => {
-    console.log("Teacher Form Data:", data);
-    reset();
+  const addTeacherHandler = async (tData: TeacherFormType) => {
+    const { isSuccess, message } = await createTeacher(tData);
+    if (isSuccess) {
+      toast.add({
+        type: "success",
+        description: message,
+      });
+      reset();
+      push("/student/create");
+    } else {
+      toast.add({
+        type: "error",
+        description: message,
+      });
+    }
   };
 
   const clearTeacherForm = () => {
@@ -52,7 +68,6 @@ const AddTeacherForm = () => {
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
                 <FieldLabel htmlFor={field.name}>Teacher Name</FieldLabel>
-
                 <Input
                   {...field}
                   id={field.name}
@@ -105,18 +120,20 @@ const AddTeacherForm = () => {
           />
         </form>
       </CardContent>
-      <Separator />
+      <Separator className="mt-3" />
+
       <CardFooter className="grid grid-cols-2 gap-3">
-        <Button
-          type="submit"
-          form="add-teacher-form">
-          Submit <UserCheckIcon />
-        </Button>
         <Button
           type="button"
           variant="destructive"
           onClick={clearTeacherForm}>
           Clear <TrashIcon />
+        </Button>
+        <Button
+          variant="outline"
+          type="submit"
+          form="add-teacher-form">
+          Submit <UserCheckIcon />
         </Button>
       </CardFooter>
     </>
