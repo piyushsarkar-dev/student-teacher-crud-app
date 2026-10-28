@@ -9,9 +9,7 @@ const page = () => {
         <CardHeader className="grid place-items-center">
           <CardTitle className="text-2xl">Teacher Card</CardTitle>
         </CardHeader>
-
         <Separator />
-
         <AddTeacherForm />
       </Card>
     </section>

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   GraduationCap,
   Mail,
@@ -15,20 +17,34 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/shadcnui/card";
+import { Prisma } from "@generated/prisma/client";
 
-const StudentCard = () => {
+type StudentCardProps = {
+  student: Prisma.StudentTableGetPayload<{
+    include: {
+      teacherTable: true;
+    };
+  }>;
+};
+
+const StudentCard = ({ student }: StudentCardProps) => {
+  const {
+    sId,
+    sFullName,
+    sEmail,
+    sPhoneNumber,
+    sGender,
+    teacherTable: { tFullName, tSubject },
+  } = student;
   return (
     <Card className="w-full gap-0 overflow-hidden rounded-2xl p-0">
-      {/* Header */}
       <CardHeader className="border-b px-5 py-5 text-center">
         <CardTitle className="text-3xl font-semibold tracking-tight">
-          Ms. Sudeva Das
+          {sFullName}
         </CardTitle>
       </CardHeader>
 
-      {/* Content */}
       <CardContent className="space-y-4 px-5 py-5">
-        {/* Email */}
         <div className="flex min-w-0 items-center gap-3">
           <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border">
             <Mail className="size-5" />
@@ -36,9 +52,7 @@ const StudentCard = () => {
 
           <div className="min-w-0 flex-1">
             <p className="text-muted-foreground text-xs">Email</p>
-            <p className="truncate text-sm font-medium">
-              Sudeva.Asan@gmail.com
-            </p>
+            <p className="truncate text-sm font-medium">{sEmail}</p>
           </div>
         </div>
 
@@ -52,7 +66,7 @@ const StudentCard = () => {
 
             <div className="min-w-0">
               <p className="text-muted-foreground text-xs">Phone</p>
-              <p className="truncate text-sm font-medium">+91 9876543200</p>
+              <p className="truncate text-sm font-medium">{sPhoneNumber}</p>
             </div>
           </div>
 
@@ -64,7 +78,7 @@ const StudentCard = () => {
 
             <div>
               <p className="text-muted-foreground text-xs">Gender</p>
-              <p className="text-sm font-medium">Male</p>
+              <p className="text-sm font-medium">{sGender}</p>
             </div>
           </div>
         </div>
@@ -77,12 +91,12 @@ const StudentCard = () => {
 
             <div className="min-w-0">
               <p className="text-muted-foreground text-xs">Teacher</p>
-              <p className="truncate text-sm font-medium">Piyush Kapoor</p>
+              <p className="truncate text-sm font-medium">{tFullName}</p>
             </div>
           </div>
 
           <span className="shrink-0 rounded-md border px-2.5 py-1 text-xs font-medium">
-            Math
+            {tSubject}
           </span>
         </div>
       </CardContent>

@@ -22,7 +22,6 @@ const createTeacher = async (tData: TeacherFormType) => {
         message: "Unable to create teacher. Please try again ",
       };
     }
-
     return {
       isSuccess: false,
       message: "Something Went Wrong ",

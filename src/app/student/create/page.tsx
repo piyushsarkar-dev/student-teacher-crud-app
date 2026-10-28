@@ -1,8 +1,22 @@
-const page = () => {
+import AddStudentForm from "@/components/customui/AddStudentForm";
+import { Card, CardHeader, CardTitle } from "@/components/shadcnui/card";
+import { Separator } from "@/components/shadcnui/separator";
+import prisma from "@/lib/dbClient/prisma";
+
+const page = async () => {
+  const allTeachers = await prisma.teacherTable.findMany();
   return (
-    <div className="grid h-dvh place-items-center">
-      Enter Student Information
-    </div>
+    <section className="grid h-[90dvh] place-items-center">
+      <Card className="w-sm gap-2">
+        <CardHeader className="grid place-items-center">
+          <CardTitle className="text-2xl">Teacher Card</CardTitle>
+        </CardHeader>
+
+        <Separator />
+
+        <AddStudentForm teacherInfo={allTeachers} />
+      </Card>
+    </section>
   );
 };
 

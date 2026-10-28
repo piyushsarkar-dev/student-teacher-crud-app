@@ -55,70 +55,63 @@ const AddTeacherForm = () => {
   };
 
   return (
-    <>
+    <form
+      onSubmit={handleSubmit(addTeacherHandler)}
+      noValidate
+      className="grid grid-cols-1 gap-5">
       <CardContent>
-        <form
-          id="add-teacher-form"
-          onSubmit={handleSubmit(addTeacherHandler)}
-          noValidate
-          className="grid grid-cols-1 gap-5">
-          <Controller
-            name="tFullName"
-            control={control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor={field.name}>Teacher Name</FieldLabel>
-                <Input
-                  {...field}
+        <Controller
+          name="tFullName"
+          control={control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel htmlFor={field.name}>Teacher Name</FieldLabel>
+              <Input
+                {...field}
+                id={field.name}
+                aria-invalid={fieldState.invalid}
+                placeholder="Enter teacher's full name"
+                autoComplete="name"
+              />
+
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
+
+        <Controller
+          name="tSubject"
+          control={control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel htmlFor={field.name}>Subject Name</FieldLabel>
+
+              <Select
+                value={field.value}
+                onValueChange={field.onChange}>
+                <SelectTrigger
                   id={field.name}
                   aria-invalid={fieldState.invalid}
-                  placeholder="Enter teacher's full name"
-                  autoComplete="name"
-                />
+                  className="w-full">
+                  <SelectValue placeholder="Select a subject" />
+                </SelectTrigger>
 
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-              </Field>
-            )}
-          />
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Subjects</SelectLabel>
+                    <SelectItem value="English">English</SelectItem>
+                    <SelectItem value="Bengali">Bengali</SelectItem>
+                    <SelectItem value="Math">Math</SelectItem>
+                    <SelectItem value="Geography">Geography</SelectItem>
+                    <SelectItem value="Computer">Computer</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
 
-          <Controller
-            name="tSubject"
-            control={control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor={field.name}>Subject Name</FieldLabel>
-
-                <Select
-                  value={field.value}
-                  onValueChange={field.onChange}>
-                  <SelectTrigger
-                    id={field.name}
-                    aria-invalid={fieldState.invalid}
-                    className="w-full">
-                    <SelectValue placeholder="Select a subject" />
-                  </SelectTrigger>
-
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel>Subjects</SelectLabel>
-                      <SelectItem value="English">English</SelectItem>
-                      <SelectItem value="Bengali">Bengali</SelectItem>
-                      <SelectItem value="Math">Math</SelectItem>
-                      <SelectItem value="Geography">Geography</SelectItem>
-                      <SelectItem value="Computer">Computer</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-              </Field>
-            )}
-          />
-        </form>
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
       </CardContent>
       <Separator className="mt-3" />
 
@@ -131,12 +124,11 @@ const AddTeacherForm = () => {
         </Button>
         <Button
           variant="outline"
-          type="submit"
-          form="add-teacher-form">
+          type="submit">
           Submit <UserCheckIcon />
         </Button>
       </CardFooter>
-    </>
+    </form>
   );
 };
 
