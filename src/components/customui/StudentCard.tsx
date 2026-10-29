@@ -1,15 +1,7 @@
 "use client";
 
-import {
-  GraduationCap,
-  Mail,
-  MarsIcon,
-  PenIcon,
-  Phone,
-  TrashIcon,
-} from "lucide-react";
+import { GraduationCap, Mail, MarsIcon, Phone } from "lucide-react";
 
-import { Button } from "@/components/shadcnui/button";
 import {
   Card,
   CardContent,
@@ -18,6 +10,8 @@ import {
   CardTitle,
 } from "@/components/shadcnui/card";
 import { Prisma } from "@generated/prisma/client";
+import DeleteButton from "./DeleteButton";
+import EditButton from "./EditButton";
 
 type StudentCardProps = {
   student: Prisma.StudentTableGetPayload<{
@@ -102,14 +96,8 @@ const StudentCard = ({ student }: StudentCardProps) => {
       </CardContent>
 
       <CardFooter className="grid grid-cols-2 gap-3 border-t px-5 py-4">
-        <Button variant="destructive">
-          <TrashIcon />
-          Delete
-        </Button>
-        <Button variant="outline">
-          <PenIcon />
-          Edit
-        </Button>
+        <DeleteButton sId={sId} />
+        <EditButton />
       </CardFooter>
     </Card>
   );
