@@ -1,6 +1,6 @@
 "use client";
 
-import { GraduationCap, Mail, MarsIcon, Phone } from "lucide-react";
+import { GraduationCap, Mail, MarsIcon, Phone, Trash2Icon } from "lucide-react";
 
 import {
   Card,
@@ -9,7 +9,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/shadcnui/card";
-import { Prisma } from "@generated/prisma/client";
+import type { Prisma } from "@generated/prisma/client";
+
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogMedia,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../shadcnui/alert-dialog";
+
+import { Button } from "../shadcnui/button";
 import DeleteButton from "./DeleteButton";
 import EditButton from "./EditButton";
 
@@ -30,6 +44,7 @@ const StudentCard = ({ student }: StudentCardProps) => {
     sGender,
     teacherTable: { tFullName, tSubject },
   } = student;
+
   return (
     <Card className="w-full gap-0 overflow-hidden rounded-2xl p-0">
       <CardHeader className="border-b px-5 py-5 text-center">
@@ -39,6 +54,7 @@ const StudentCard = ({ student }: StudentCardProps) => {
       </CardHeader>
 
       <CardContent className="space-y-4 px-5 py-5">
+        {/* Email */}
         <div className="flex min-w-0 items-center gap-3">
           <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border">
             <Mail className="size-5" />
@@ -77,6 +93,7 @@ const StudentCard = ({ student }: StudentCardProps) => {
           </div>
         </div>
 
+        {/* Teacher */}
         <div className="flex items-center justify-between gap-3 rounded-xl border p-3">
           <div className="flex min-w-0 items-center gap-3">
             <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border">
@@ -96,7 +113,36 @@ const StudentCard = ({ student }: StudentCardProps) => {
       </CardContent>
 
       <CardFooter className="grid grid-cols-2 gap-3 border-t px-5 py-4">
-        <DeleteButton sId={sId} />
+        {/* Delete Confirmation Dialog */}
+        <AlertDialog>
+          <AlertDialogTrigger
+            render={
+              <Button variant="destructive">
+                Delete <Trash2Icon />
+              </Button>
+            }
+          />
+
+          <AlertDialogContent size="sm">
+            <AlertDialogHeader>
+              <AlertDialogMedia className="bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive">
+                <Trash2Icon />
+              </AlertDialogMedia>
+
+              <AlertDialogTitle>Delete student?</AlertDialogTitle>
+
+              <AlertDialogDescription>
+                Are you sure you want to delete this student? This action cannot
+                be undone. The student record will be permanently deleted.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+
+            <AlertDialogFooter>
+              <AlertDialogCancel variant="outline">Cancel</AlertDialogCancel>
+              <DeleteButton sId={sId} />
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
         <EditButton />
       </CardFooter>
     </Card>
