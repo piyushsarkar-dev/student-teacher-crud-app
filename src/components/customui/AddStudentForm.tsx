@@ -28,10 +28,12 @@ type StudentFormProps = {
 
 const AddStudentForm = ({ teacherInfo }: StudentFormProps) => {
   const { push } = useRouter();
+
   const teacherItems = teacherInfo.map(({ tId, tFullName, tSubject }) => ({
     value: tId,
     label: `${tFullName} (${tSubject})`,
   }));
+
   const { handleSubmit, control, reset } = useForm<StudentFormType>({
     resolver: zodResolver(studentFormSchema),
     defaultValues: {
@@ -150,6 +152,7 @@ const AddStudentForm = ({ teacherInfo }: StudentFormProps) => {
               <Input
                 {...field}
                 id={field.name}
+                type="tel"
                 aria-invalid={fieldState.invalid}
                 placeholder="Enter Your Phone Number"
                 autoComplete="cc-number"

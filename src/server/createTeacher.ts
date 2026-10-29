@@ -13,18 +13,18 @@ const createTeacher = async (tData: TeacherFormType) => {
     revalidatePath("/student/create");
     return {
       isSuccess: true,
-      message: "Teacher Created Successfully ",
+      message: "Teacher Created Successfully",
     };
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       return {
         isSuccess: false,
-        message: "Unable to create teacher. Please try again ",
+        message: "Unable to create teacher. Please try again",
       };
     }
     return {
       isSuccess: false,
-      message: "Something Went Wrong ",
+      message: "Something Went Wrong",
     };
   }
 };

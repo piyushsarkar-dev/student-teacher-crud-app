@@ -66,7 +66,7 @@ const StudentCard = ({ student }: StudentCardProps) => {
 
             <div className="min-w-0">
               <p className="text-muted-foreground text-xs">Phone</p>
-              <p className="truncate text-sm font-medium">{sPhoneNumber}</p>
+              <p className="truncate text-sm font-medium">+91 {sPhoneNumber}</p>
             </div>
           </div>
 

@@ -113,7 +113,7 @@ const AddTeacherForm = () => {
           )}
         />
       </CardContent>
-      <Separator className="mt-3" />
+      <Separator />
 
       <CardFooter className="grid grid-cols-2 gap-3">
         <Button

@@ -15,16 +15,14 @@ const page = async () => {
     },
   });
   return (
-    <>
-      <section className="grid grid-cols-1 place-items-center gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {allDetails.map((student) => (
-          <StudentCard
-            key={student.sId}
-            student={student}
-          />
-        ))}
-      </section>
-    </>
+    <section className="grid grid-cols-1 place-items-center gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {allDetails.map((student) => (
+        <StudentCard
+          key={student.sId}
+          student={student}
+        />
+      ))}
+    </section>
   );
 };
 

@@ -9,11 +9,9 @@ const page = async () => {
     <section className="grid h-[90dvh] place-items-center">
       <Card className="w-sm gap-2">
         <CardHeader className="grid place-items-center">
-          <CardTitle className="text-2xl">Teacher Card</CardTitle>
+          <CardTitle className="text-2xl">Student Card</CardTitle>
         </CardHeader>
-
         <Separator />
-
         <AddStudentForm teacherInfo={allTeachers} />
       </Card>
     </section>
