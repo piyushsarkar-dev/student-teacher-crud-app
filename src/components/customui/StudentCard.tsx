@@ -23,9 +23,9 @@ import {
   AlertDialogTrigger,
 } from "../shadcnui/alert-dialog";
 
+import Link from "next/link";
 import { Button } from "../shadcnui/button";
 import DeleteButton from "./DeleteButton";
-import EditButton from "./EditButton";
 
 type StudentCardProps = {
   student: Prisma.StudentTableGetPayload<{
@@ -143,7 +143,13 @@ const StudentCard = ({ student }: StudentCardProps) => {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
-        <EditButton />
+        <Link href={`/student/${sId}`}>
+          <Button
+            variant={"secondary"}
+            className="w-full cursor-pointer">
+            Update
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   );
