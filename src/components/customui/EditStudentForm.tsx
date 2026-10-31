@@ -34,7 +34,11 @@ const EditStudentForm = ({ studata, teachersInfo }: EditStudentFormProps) => {
     label: `${tFullName} (${tSubject})`,
   }));
 
-  const { handleSubmit, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+    formState: { isDirty },
+  } = useForm({
     resolver: zodResolver(studentFormSchema),
     defaultValues: {
       sFullName: studata.sFullName,
@@ -200,6 +204,7 @@ const EditStudentForm = ({ studata, teachersInfo }: EditStudentFormProps) => {
           Clear <TrashIcon />
         </Button>
         <Button
+          disabled={!isDirty}
           variant="outline"
           type="submit">
           Submit <UserCheckIcon />

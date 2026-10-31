@@ -1,6 +1,15 @@
 "use client";
 
-import { GraduationCap, Mail, MarsIcon, Phone, Trash2Icon } from "lucide-react";
+import {
+  GraduationCap,
+  Mail,
+  MarsIcon,
+  PenIcon,
+  Phone,
+  TransgenderIcon,
+  Trash2Icon,
+  VenusIcon,
+} from "lucide-react";
 
 import {
   Card,
@@ -13,6 +22,7 @@ import type { Prisma } from "@generated/prisma/client";
 
 import {
   AlertDialog,
+  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -45,10 +55,17 @@ const StudentCard = ({ student }: StudentCardProps) => {
     teacherTable: { tFullName, tSubject },
   } = student;
 
+  const gender = sGender.trim().toLowerCase();
+
   return (
     <Card className="w-full gap-0 overflow-hidden rounded-2xl p-0">
       <CardHeader className="border-b px-5 py-5 text-center">
         <CardTitle className="text-3xl font-semibold tracking-tight">
+          {gender === "male" ?
+            "Mr."
+          : gender === "female" ?
+            "Ms."
+          : null}{" "}
           {sFullName}
         </CardTitle>
       </CardHeader>
@@ -65,7 +82,6 @@ const StudentCard = ({ student }: StudentCardProps) => {
             <p className="truncate text-sm font-medium">{sEmail}</p>
           </div>
         </div>
-
         {/* Phone and Gender */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {/* Phone */}
@@ -83,16 +99,17 @@ const StudentCard = ({ student }: StudentCardProps) => {
           {/* Gender */}
           <div className="flex items-center gap-3">
             <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border">
-              <MarsIcon className="size-5" />
+              {gender === "male" && <MarsIcon className="size-5" />}
+              {gender === "female" && <VenusIcon className="size-5" />}
+              {gender === "others" && <TransgenderIcon className="size-5" />}
             </div>
 
-            <div>
+            <div className="min-w-0">
               <p className="text-muted-foreground text-xs">Gender</p>
-              <p className="text-sm font-medium">{sGender}</p>
+              <p className="text-sm font-medium capitalize">{gender}</p>
             </div>
           </div>
         </div>
-
         {/* Teacher */}
         <div className="flex items-center justify-between gap-3 rounded-xl border p-3">
           <div className="flex min-w-0 items-center gap-3">
@@ -143,13 +160,36 @@ const StudentCard = ({ student }: StudentCardProps) => {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
-        <Link href={`/student/${sId}`}>
-          <Button
-            variant={"secondary"}
-            className="w-full cursor-pointer">
-            Update
-          </Button>
-        </Link>
+
+        <AlertDialog>
+          <AlertDialogTrigger
+            render={
+              <Button variant="outline">
+                Edit Details <PenIcon />
+              </Button>
+            }
+          />
+          <AlertDialogContent size="sm">
+            <AlertDialogHeader>
+              <AlertDialogMedia>
+                <PenIcon />
+              </AlertDialogMedia>
+              <AlertDialogTitle>Edit student details?</AlertDialogTitle>
+
+              <AlertDialogDescription>
+                Update this students information.You can update their personal
+                details.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction>
+                {" "}
+                <Link href={`/student/${sId}`}>Edit</Link>
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </CardFooter>
     </Card>
   );
