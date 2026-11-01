@@ -56,10 +56,10 @@ Create a teacher first, then add students and link each one to a teacher. The ho
 
 ## Screenshots
 
-All images below are the [screenshots included in this repository](./public/demo/).
+All eight screenshots from [public/demo](./public/demo/) are included below. Click a screenshot to open the original image.
 
 <p align="center">
-  <img src="./public/demo/home-with-student-details.png" alt="Next.js student management dashboard with teacher assignments and CRUD controls" width="960" /><br />
+  <a href="./public/demo/home-with-student-details.png"><img src="./public/demo/home-with-student-details.png" alt="Next.js student management dashboard with teacher assignments and CRUD controls" width="960" /></a><br />
   <sub>Student records with contact details, assigned teachers, and edit and delete actions.</sub>
 </p>
 
@@ -67,32 +67,48 @@ All images below are the [screenshots included in this repository](./public/demo
 
 <table>
   <tr>
-    <td align="center" width="50%"><img src="./public/demo/home-no-student.png" alt="Home page before students are added" width="100%" /><br /><sub>Empty home page</sub></td>
-    <td align="center" width="50%"><img src="./public/demo/get-started-t-s.png" alt="Dialog for choosing a student or teacher profile" width="100%" /><br /><sub>Choose what to create</sub></td>
+    <td align="center" width="50%"><a href="./public/demo/home-no-student.png"><img src="./public/demo/home-no-student.png" alt="Home page before students are added" width="100%" /></a><br /><sub>Empty home page</sub></td>
+    <td align="center" width="50%"><a href="./public/demo/get-started-t-s.png"><img src="./public/demo/get-started-t-s.png" alt="Dialog for choosing a student or teacher profile" width="100%" /></a><br /><sub>Choose what to create</sub></td>
   </tr>
 </table>
 
 ### 02 · Teacher management
 
-<p align="center"><img src="./public/demo/creatye-teacher.png" alt="Create teacher form with name and subject" width="70%" /><br /><sub>Create a teacher before assigning one to a student</sub></p>
+<p align="center"><a href="./public/demo/creatye-teacher.png"><img src="./public/demo/creatye-teacher.png" alt="Create teacher form with name and subject" width="70%" /></a><br /><sub>Create a teacher before assigning one to a student</sub></p>
 
-### 03 · Student management
+### 03 · Create a student
 
-<table>
-  <tr>
-    <td align="center" width="50%"><img src="./public/demo/create-student.png" alt="Create student form" width="100%" /><br /><sub>Create a student and select a teacher</sub></td>
-    <td align="center" width="50%"><img src="./public/demo/edit-student-details.png" alt="Edit student details form" width="100%" /><br /><sub>Update a student profile and teacher assignment</sub></td>
-  </tr>
-</table>
+<p align="center">
+  <a href="./public/demo/create-student.png"><img src="./public/demo/create-student.png" alt="Create student form with contact details and teacher selection" width="960" /></a><br />
+  <sub>Enter the student's details and select an existing teacher.</sub>
+</p>
 
-### 04 · CRUD interactions
+### 04 · Edit student details
 
-<table>
-  <tr>
-    <td align="center" width="50%"><img src="./public/demo/edit-button-alert.png" alt="Confirmation dialog before editing a student" width="100%" /><br /><sub>Confirm before opening the edit form</sub></td>
-    <td align="center" width="50%"><img src="./public/demo/delet-button-alert.png" alt="Confirmation dialog before deleting a student" width="100%" /><br /><sub>Confirm permanent deletion</sub></td>
-  </tr>
-</table>
+#### Step 1: Confirm editing
+
+Select **Edit Details** on a student card, then choose **Edit** in the confirmation dialog.
+
+<p align="center">
+  <a href="./public/demo/edit-button-alert.png"><img src="./public/demo/edit-button-alert.png" alt="Edit Details confirmation dialog before opening the student edit form" width="960" /></a><br />
+  <sub>Edit Details confirmation dialog</sub>
+</p>
+
+#### Step 2: Update the student form
+
+Change the student's name, email, gender, phone number, or assigned teacher, then submit the form.
+
+<p align="center">
+  <a href="./public/demo/edit-student-details.png"><img src="./public/demo/edit-student-details.png" alt="Edit Student Form showing existing student details and teacher assignment" width="960" /></a><br />
+  <sub>Edit Student Details form</sub>
+</p>
+
+### 05 · Delete a student
+
+<p align="center">
+  <a href="./public/demo/delet-button-alert.png"><img src="./public/demo/delet-button-alert.png" alt="Delete student confirmation dialog" width="960" /></a><br />
+  <sub>Review the confirmation before permanently deleting a student.</sub>
+</p>
 
 ## Technology stack
 
