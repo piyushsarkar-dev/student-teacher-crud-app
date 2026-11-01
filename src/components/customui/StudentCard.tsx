@@ -22,7 +22,6 @@ import type { Prisma } from "@generated/prisma/client";
 
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -82,6 +81,7 @@ const StudentCard = ({ student }: StudentCardProps) => {
             <p className="truncate text-sm font-medium">{sEmail}</p>
           </div>
         </div>
+
         {/* Phone and Gender */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {/* Phone */}
@@ -110,6 +110,7 @@ const StudentCard = ({ student }: StudentCardProps) => {
             </div>
           </div>
         </div>
+
         {/* Teacher */}
         <div className="flex items-center justify-between gap-3 rounded-xl border p-3">
           <div className="flex min-w-0 items-center gap-3">
@@ -161,6 +162,7 @@ const StudentCard = ({ student }: StudentCardProps) => {
           </AlertDialogContent>
         </AlertDialog>
 
+        {/* Edit Confirmation Dialog */}
         <AlertDialog>
           <AlertDialogTrigger
             render={
@@ -177,16 +179,15 @@ const StudentCard = ({ student }: StudentCardProps) => {
               <AlertDialogTitle>Edit student details?</AlertDialogTitle>
 
               <AlertDialogDescription>
-                Update this students information.You can update their personal
-                details.
+                Update this student&apos;s information. You can update their
+                personal details.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction>
-                {" "}
-                <Link href={`/student/${sId}`}>Edit</Link>
-              </AlertDialogAction>
+              <Link href={`/student/${sId}`} className="contents">
+                <Button className="w-full">Edit</Button>
+              </Link>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

@@ -39,7 +39,7 @@ const EditStudentForm = ({ studata, teachersInfo }: EditStudentFormProps) => {
     reset,
     control,
     formState: { isDirty, isSubmitting },
-  } = useForm({
+  } = useForm<StudentFormType>({
     resolver: zodResolver(studentFormSchema),
 
     defaultValues: {
@@ -72,11 +72,11 @@ const EditStudentForm = ({ studata, teachersInfo }: EditStudentFormProps) => {
 
   const clearStudentForm = () => {
     reset({
-      sFullName: "",
-      sEmail: "",
-      sGender: "",
-      sPhoneNumber: "",
-      teacherTableTId: "",
+      sFullName: studata.sFullName,
+      sEmail: studata.sEmail,
+      sGender: studata.sGender,
+      sPhoneNumber: studata.sPhoneNumber,
+      teacherTableTId: studata.teacherTableTId,
     });
   };
 
@@ -166,7 +166,7 @@ const EditStudentForm = ({ studata, teachersInfo }: EditStudentFormProps) => {
                 type="tel"
                 aria-invalid={fieldState.invalid}
                 placeholder="Enter Your Phone Number"
-                autoComplete="cc-number"
+                autoComplete="tel"
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
@@ -212,6 +212,7 @@ const EditStudentForm = ({ studata, teachersInfo }: EditStudentFormProps) => {
       <CardFooter className="grid grid-cols-2 gap-3">
         <Button
           onClick={clearStudentForm}
+          disabled={!isDirty || isSubmitting}
           type="button"
           variant="destructive">
           Clear <TrashIcon />

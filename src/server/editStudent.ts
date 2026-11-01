@@ -16,14 +16,14 @@ const editStudent = async (newData: StudentFormType, sId: string) => {
 
     return {
       isSuccess: true,
-      message: "User Details Update Successfully",
+      message: "Student updated successfully.",
     };
   } catch (error) {
-    console.log(error);
+    console.error(error);
 
     return {
       isSuccess: false,
-      message: "User Delete Failed",
+      message: "Failed to update student. Please try again.",
     };
   }
 };

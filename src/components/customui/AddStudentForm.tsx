@@ -156,7 +156,7 @@ const AddStudentForm = ({ teacherInfo }: StudentFormProps) => {
                 type="tel"
                 aria-invalid={fieldState.invalid}
                 placeholder="Enter Your Phone Number"
-                autoComplete="cc-number"
+                autoComplete="tel"
               />
 
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}

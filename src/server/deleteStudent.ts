@@ -12,14 +12,14 @@ const deleteStudent = async (sId: string) => {
 
     return {
       isSuccess: true,
-      message: "User Delete Successfully",
+      message: "Student deleted successfully.",
     };
   } catch (error) {
-    console.log(error);
+    console.error(error);
 
     return {
       isSuccess: false,
-      message: "User Delete Failed",
+      message: "Failed to delete student. Please try again.",
     };
   }
 };
