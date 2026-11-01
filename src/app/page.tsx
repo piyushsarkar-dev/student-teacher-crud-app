@@ -78,7 +78,7 @@ const Page = async () => {
 
               <AlertDialogHeader>
                 <AlertDialogMedia>
-                  <FaceGrinningIcon />
+                  <FaceGrinningIcon className="text-green-500" />
                 </AlertDialogMedia>
 
                 <AlertDialogTitle>
