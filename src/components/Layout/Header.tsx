@@ -1,4 +1,4 @@
-import { GraduationCap, House, UserRoundPlus } from "lucide-react";
+import { GraduationCapIcon, House, UserRoundPlusIcon } from "lucide-react";
 
 import Link from "next/link";
 import { Button } from "../shadcnui/button";
@@ -37,7 +37,7 @@ const Header = () => {
           <Link href="/student/create">
             <Button variant="ghost">
               <span className="flex items-center gap-2">
-                <UserRoundPlus className="size-4" />
+                <UserRoundPlusIcon className="size-4" />
                 Student
               </span>
             </Button>
@@ -47,7 +47,7 @@ const Header = () => {
           <Link href="/teacher/create">
             <Button variant="ghost">
               <span className="flex items-center gap-2">
-                <GraduationCap className="size-4" />
+                <GraduationCapIcon className="size-4" />
                 Teacher
               </span>
             </Button>
