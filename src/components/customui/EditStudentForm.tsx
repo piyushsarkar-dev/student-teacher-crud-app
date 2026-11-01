@@ -4,7 +4,7 @@ import { studentFormSchema, StudentFormType } from "@/lib/zodSchema";
 import editStudent from "@/server/editStudent";
 import { StudentTable, TeacherTable } from "@generated/prisma/client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TrashIcon, UserCheckIcon } from "lucide-react";
+import { Loader2Icon, TrashIcon, UserCheckIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { Button } from "../shadcnui/button";
@@ -36,10 +36,12 @@ const EditStudentForm = ({ studata, teachersInfo }: EditStudentFormProps) => {
 
   const {
     handleSubmit,
+    reset,
     control,
-    formState: { isDirty },
+    formState: { isDirty, isSubmitting },
   } = useForm({
     resolver: zodResolver(studentFormSchema),
+
     defaultValues: {
       sFullName: studata.sFullName,
       sEmail: studata.sEmail,
@@ -66,6 +68,16 @@ const EditStudentForm = ({ studata, teachersInfo }: EditStudentFormProps) => {
         description: message,
       });
     }
+  };
+
+  const clearStudentForm = () => {
+    reset({
+      sFullName: "",
+      sEmail: "",
+      sGender: "",
+      sPhoneNumber: "",
+      teacherTableTId: "",
+    });
   };
 
   return (
@@ -97,12 +109,12 @@ const EditStudentForm = ({ studata, teachersInfo }: EditStudentFormProps) => {
           control={control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor={field.name}>Email Adress</FieldLabel>
+              <FieldLabel htmlFor={field.name}>Email Address</FieldLabel>
               <Input
                 {...field}
                 id={field.name}
                 aria-invalid={fieldState.invalid}
-                placeholder="Enter Your Email Adress"
+                placeholder="Enter Your Email Address"
                 autoComplete="email"
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
@@ -199,15 +211,23 @@ const EditStudentForm = ({ studata, teachersInfo }: EditStudentFormProps) => {
 
       <CardFooter className="grid grid-cols-2 gap-3">
         <Button
+          onClick={clearStudentForm}
           type="button"
           variant="destructive">
           Clear <TrashIcon />
         </Button>
         <Button
-          disabled={!isDirty}
+          disabled={!isDirty || isSubmitting}
           variant="outline"
           type="submit">
-          Submit <UserCheckIcon />
+          {isSubmitting ?
+            <>
+              <Loader2Icon className="animate-spin" /> Submitting..
+            </>
+          : <>
+              Submit <UserCheckIcon />
+            </>
+          }
         </Button>
       </CardFooter>
     </form>

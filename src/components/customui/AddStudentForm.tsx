@@ -34,7 +34,12 @@ const AddStudentForm = ({ teacherInfo }: StudentFormProps) => {
     label: `${tFullName} (${tSubject})`,
   }));
 
-  const { handleSubmit, control, reset } = useForm<StudentFormType>({
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { isDirty, isValid, isSubmitting },
+  } = useForm<StudentFormType>({
     resolver: zodResolver(studentFormSchema),
     defaultValues: {
       sFullName: "",
@@ -61,10 +66,6 @@ const AddStudentForm = ({ teacherInfo }: StudentFormProps) => {
         description: message,
       });
     }
-  };
-
-  const clearTeacherForm = () => {
-    reset();
   };
 
   return (
@@ -97,12 +98,12 @@ const AddStudentForm = ({ teacherInfo }: StudentFormProps) => {
           control={control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor={field.name}>Email Adress</FieldLabel>
+              <FieldLabel htmlFor={field.name}>Email Address</FieldLabel>
               <Input
                 {...field}
                 id={field.name}
                 aria-invalid={fieldState.invalid}
-                placeholder="Enter Your Email Adress"
+                placeholder="Enter Your Email Address"
                 autoComplete="email"
               />
 
@@ -199,12 +200,14 @@ const AddStudentForm = ({ teacherInfo }: StudentFormProps) => {
 
       <CardFooter className="grid grid-cols-2 gap-3">
         <Button
-          onClick={clearTeacherForm}
+          onClick={() => reset()}
+          disabled={!isDirty || isSubmitting}
           type="button"
           variant="destructive">
           Clear <TrashIcon />
         </Button>
         <Button
+          disabled={!isValid || isSubmitting}
           variant="outline"
           type="submit">
           Submit <UserCheckIcon />

@@ -2,6 +2,7 @@
 
 import prisma from "@/lib/dbClient/prisma";
 import { StudentFormType } from "@/lib/zodSchema";
+import { revalidatePath } from "next/cache";
 
 const editStudent = async (newData: StudentFormType, sId: string) => {
   try {
@@ -11,6 +12,7 @@ const editStudent = async (newData: StudentFormType, sId: string) => {
         sId: sId,
       },
     });
+    revalidatePath("/");
 
     return {
       isSuccess: true,

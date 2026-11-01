@@ -3,7 +3,7 @@
 import { teacherFormSchema, type TeacherFormType } from "@/lib/zodSchema";
 import createTeacher from "@/server/createTeacher";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TrashIcon, UserCheckIcon } from "lucide-react";
+import { LoaderCircle, TrashIcon, UserCheckIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { Button } from "../shadcnui/button";
@@ -24,7 +24,13 @@ import { toast } from "../shadcnui/toast";
 
 const AddTeacherForm = () => {
   const { push } = useRouter();
-  const { handleSubmit, control, reset } = useForm<TeacherFormType>({
+
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { isSubmitting, isValid, isDirty },
+  } = useForm<TeacherFormType>({
     resolver: zodResolver(teacherFormSchema),
     defaultValues: {
       tFullName: "",
@@ -35,11 +41,13 @@ const AddTeacherForm = () => {
 
   const addTeacherHandler = async (tData: TeacherFormType) => {
     const { isSuccess, message } = await createTeacher(tData);
+
     if (isSuccess) {
       toast.add({
         type: "success",
         description: message,
       });
+
       reset();
       push("/student/create");
     } else {
@@ -50,22 +58,20 @@ const AddTeacherForm = () => {
     }
   };
 
-  const clearTeacherForm = () => {
-    reset();
-  };
-
   return (
     <form
       onSubmit={handleSubmit(addTeacherHandler)}
       noValidate
       className="grid grid-cols-1 gap-5">
       <CardContent>
+        {/* Teacher Name */}
         <Controller
           name="tFullName"
           control={control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor={field.name}>Teacher Name</FieldLabel>
+
               <Input
                 {...field}
                 id={field.name}
@@ -79,6 +85,7 @@ const AddTeacherForm = () => {
           )}
         />
 
+        {/* Teacher Subject */}
         <Controller
           name="tSubject"
           control={control}
@@ -113,19 +120,35 @@ const AddTeacherForm = () => {
           )}
         />
       </CardContent>
+
       <Separator />
 
       <CardFooter className="grid grid-cols-2 gap-3">
+        {/* Clear Button */}
         <Button
           type="button"
           variant="destructive"
-          onClick={clearTeacherForm}>
-          Clear <TrashIcon />
+          onClick={() => reset()}
+          disabled={!isDirty || isSubmitting}>
+          Clear
+          <TrashIcon className="size-4" />
         </Button>
+
+        {/* Submit Button */}
         <Button
+          type="submit"
           variant="outline"
-          type="submit">
-          Submit <UserCheckIcon />
+          disabled={!isValid || isSubmitting}>
+          {isSubmitting ?
+            <>
+              Submitting
+              <LoaderCircle className="size-4 animate-spin" />
+            </>
+          : <>
+              Submit
+              <UserCheckIcon className="size-4" />
+            </>
+          }
         </Button>
       </CardFooter>
     </form>
